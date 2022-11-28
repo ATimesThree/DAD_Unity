@@ -27,7 +27,7 @@ public class CustomPopupScript : MonoBehaviour
             return;
         }
 
-        if (String.IsNullOrWhiteSpace(TagNameText.text))
+        if (TagNameText is null || String.IsNullOrWhiteSpace(TagNameText.text))
         {
             return;
         }
@@ -78,7 +78,7 @@ public class CustomPopupScript : MonoBehaviour
         {
             return;
         }
-        if (SecondsBetweenCalls * 60 <= internalTimer)
+        if (SecondsBetweenCalls * 60 >= internalTimer)
         {
             MeasurementText.text = GetMeasurementFromAPI();
             internalTimer = 0;
