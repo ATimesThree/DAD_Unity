@@ -10,17 +10,20 @@ public class CustomPopupScript : MonoBehaviour
     public GameObject PopupObject;
     public GameObject TagnameObject;
     public GameObject MeasurementObject;
+    public string Url;
     public int SecondsBetweenCalls;
+    public bool useName = true;
 
     TextMeshProUGUI TagNameText;
     TextMeshProUGUI MeasurementText;
-    private string url = "http://localhost:8085/tunglabb/";
     private int internalTimer = 0;
+    private bool canCallAPI = false;
 
     void OnTriggerEnter(Collider other)
     {
 
         PopupObject.SetActive(true);
+        canCallAPI = true;
 
         if (TagnameObject is null || MeasurementObject is null)
         {
@@ -32,7 +35,10 @@ public class CustomPopupScript : MonoBehaviour
             return;
         }
 
-        this.url = this.url + "GetMeasurement?tagname=" + TagNameText.text;
+        if (useName)
+        {
+            this.Url = this.Url + TagNameText.text;
+        }
         MeasurementText.text = GetMeasurementFromAPI();
     }
 
@@ -41,7 +47,7 @@ public class CustomPopupScript : MonoBehaviour
         string response = "";
         using (WebClient client = new WebClient())
         {
-            response = client.DownloadString(url);
+            response = client.DownloadString(this.Url);
         }
         return response;
     }
@@ -49,6 +55,7 @@ public class CustomPopupScript : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         PopupObject.SetActive(false);
+        canCallAPI = false;
     }
 
     // Start is called before the first frame update
@@ -64,7 +71,6 @@ public class CustomPopupScript : MonoBehaviour
         {
             MeasurementText = MeasurementObject.GetComponent<TextMeshProUGUI>();
         }
-
     }
 
     // Update is called once per frame
@@ -78,14 +84,19 @@ public class CustomPopupScript : MonoBehaviour
         {
             return;
         }
-        if (SecondsBetweenCalls * 60 >= internalTimer)
+
+        if (canCallAPI)
         {
-            MeasurementText.text = GetMeasurementFromAPI();
-            internalTimer = 0;
-        }
-        else
-        {
-            internalTimer += 1;
+            if (SecondsBetweenCalls * 60 >= internalTimer)
+            {
+           
+                MeasurementText.text = GetMeasurementFromAPI();
+                internalTimer = 0;
+            }
+            else
+            {
+                internalTimer += 1;
+            }
         }
     }
 }
