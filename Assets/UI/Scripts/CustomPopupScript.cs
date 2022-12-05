@@ -12,7 +12,6 @@ public class CustomPopupScript : MonoBehaviour
     public GameObject MeasurementObject;
     public string Url;
     public int SecondsBetweenCalls;
-    public bool useName = true;
 
     TextMeshProUGUI TagNameText;
     TextMeshProUGUI MeasurementText;
@@ -35,10 +34,6 @@ public class CustomPopupScript : MonoBehaviour
             return;
         }
 
-        if (useName)
-        {
-            this.Url = this.Url + TagNameText.text;
-        }
         MeasurementText.text = GetMeasurementFromAPI();
     }
 
