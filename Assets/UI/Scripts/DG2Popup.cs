@@ -79,35 +79,35 @@ public class DG2Popup : MonoBehaviour
             {
                 case "G2-I-L1":
                     internalCurrentL1TagnameObject.text = itm.tagname;
-                    internalCurrentL1ValueObject.text = itm.measurement + " A";
+                    internalCurrentL1ValueObject.text = Math.Round(itm.measurement, 1) + " A";
                     break;
                 case "G2-I-L2":
                     internalCurrentL2TagnameObject.text = itm.tagname;
-                    internalCurrentL2ValueObject.text = itm.measurement + " A";
+                    internalCurrentL2ValueObject.text = Math.Round(itm.measurement, 1) + " A";
                     break;
                 case "G2-I-L3":
                     internalCurrentL3TagnameObject.text = itm.tagname;
-                    internalCurrentL3ValueObject.text = itm.measurement + " A";
+                    internalCurrentL3ValueObject.text = Math.Round(itm.measurement, 1) + " A";
                     break;
                 case "G2-LOAD":
                     internalPowerTagnameObject.text = itm.tagname;
-                    internalPowerValueObject.text = itm.measurement + " KW";
+                    internalPowerValueObject.text = Math.Round(itm.measurement,1) + " KW";
                     break;
                 case "G2-LOAD-KVAR":
                     internalReactiveTagnameObject.text = itm.tagname;
-                    internalReactiveValueObject.text = itm.measurement + " KVAR";
+                    internalReactiveValueObject.text = Math.Round(itm.measurement, 1) + " KVAR";
                     break;
                 case "DG2-GEN-FRQ":
                     internalFreqTagnameObject.text = itm.tagname;
-                    internalFreqValueObject.text = itm.measurement + " HZ";
+                    internalFreqValueObject.text = Math.Round(itm.measurement, 1) + " HZ";
                     break;
                 case "DG2-GEN-V":
                     internalVoltTagnameObject.text = itm.tagname;
-                    internalVoltValueObject.text = itm.measurement + " V";
+                    internalVoltValueObject.text = Math.Round(itm.measurement, 1) + " V";
                     break;
                 case "DG2-VELOC":
                     internalRPMTagnameObject.text = itm.tagname;
-                    internalRPMValueObject.text = itm.measurement + " RPM";
+                    internalRPMValueObject.text = Math.Round(itm.measurement, 1) + " RPM";
                     break;
                 default:
                     break;
